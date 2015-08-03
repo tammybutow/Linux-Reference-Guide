@@ -68,6 +68,20 @@ $yum repolist
 # you can now yum install the packages you added to your repo
 $yum install packagename
 
+Adding Groups and Users
+----------------------------------------------------
+#add 3 users, mark, gallia and jono. Mark and Gallia belong to the parents group as an additional group. Jono's login shell is not interactive. 
+$groupadd parents
+$useradd -G parents mark
+$useradd -G parents gallia
+#view their groups
+$id gallia
+#now add jono
+$useradd -s /sbin/nologin jono
+#show the login shell for each user
+$cat /etc/passwd
+
+
 VIM Basics
 ----------------------------------------------------
 # dd (delete row)
