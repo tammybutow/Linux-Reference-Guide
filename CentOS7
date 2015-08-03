@@ -1,21 +1,41 @@
 Resetting root password
-# delete rhgb quiet
+----------------------------------------------------
+$ delete rhgb quiet
 # add rd.break enforcing=0 to end of linux 16 line
-# ctrl + x
-# mount -o remount,rw /sysroot
-# chroot /sysroot
-# passwd
-# touch /.autorelabel
-# mount -o remount,ro /
-# exit
-# exit
-
+$ ctrl + x
+$ mount -o remount,rw /sysroot
+$ chroot /sysroot
+$ passwd
+$ mount -o remount,ro /
+$ exit
+$ exit
+server will now reboot, you can use the new password
+$restorecon /etc/shadow
+$setenforce 1
+$getenforce
 
 Configure network interfaces
-# nmcli 
-# nmtui
+----------------------------------------------------
+$nmtui (network manager text user interface)
 
-VIM
+#or you can edit the files directly:
+$cd /etc/sysconfig/network-scripts
+$vim ifcfg-eth0
+
+Setting a hostname and making it perm on reboot
+----------------------------------------------------
+$nmtui
+#edit the hostname
+$systemctl restart systemd-hostnamed
+
+or 
+$systemctl restart NetworkManager
+
+#check the hostname persists after reboot
+$hostname 
+
+VIM Basics
+----------------------------------------------------
 # dd (delete row)
 # u (undo)
 # v (visual, used for selecting)
