@@ -81,6 +81,15 @@ $useradd -s /sbin/nologin jono
 #show the login shell for each user
 $cat /etc/passwd
 
+Changing Directory Permissions
+----------------------------------------------------
+$mkdir parents/
+#change parents directory to 770 for permissions, permissions are in ugo form... user (owner) - group - others
+$chmod 770 parents/
+#change the group for the parents directory to parents
+$chgrp parents parents/
+#view the permissions for each directory
+$ls -l 
 
 VIM Basics
 ----------------------------------------------------
