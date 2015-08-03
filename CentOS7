@@ -34,6 +34,40 @@ $systemctl restart NetworkManager
 #check the hostname persists after reboot
 $hostname 
 
+Modify default DNS 
+----------------------------------------------------
+$nmtui
+$nmcli conn down enp0s3
+$nmcli conn up enp0s3
+
+or edit the file manually
+
+$vim /etc/sysconfig/network-scripts/ifcfg-eth0
+#add gateway=ip to file
+#add DNS to file
+#restart connection
+$systemctl restart NetworkManager 
+
+Create a repo and get materials via FTP
+----------------------------------------------------
+$mkdir /myrepo
+$cd /myrepo
+$wget ftp://addressoffiles
+$tar xvf packages.tgz
+#now make the repo with these files
+$vim /etc/yum.repos.d/myrepo.repo
+#edit the file to include:
+| [myrepo]
+| name=myrepo
+| baseurl=file:///myrepo
+| gpgcheck=0
+#create the repo
+$createrepo /myrepo
+#check it exits and has all packages
+$yum repolist
+# you can now yum install the packages you added to your repo
+$yum install packagename
+
 VIM Basics
 ----------------------------------------------------
 # dd (delete row)
