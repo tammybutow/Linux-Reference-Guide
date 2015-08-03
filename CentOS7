@@ -91,6 +91,22 @@ $chgrp parents parents/
 #view the permissions for each directory
 $ls -l 
 
+Managing the Kernel 
+----------------------------------------------------
+#view kernel modules
+$lsmod
+#view installed kernels
+$rpm -qa kernel
+#view current kernel
+$uname -r
+#import kernel and set it as the default
+$rpm -ivh kernel.rpm 
+#create the config file
+grub2-mkconfig -o /boot/grub2/grub.cfg
+
+#remove an old kernel
+$yum remove kernel-ml-4.1.3-1.el7.elrepo.x86_64
+
 VIM Basics
 ----------------------------------------------------
 # dd (delete row)
