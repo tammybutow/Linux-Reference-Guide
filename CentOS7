@@ -1,26 +1,11 @@
 Resetting root password
 # delete rhgb quiet
-# add rd.break to end of linux 16 line
+# add rd.break enforcing=0 to end of linux 16 line
 # ctrl + x
 # mount -o remount,rw /sysroot
 # chroot /sysroot
 # passwd
 # touch /.autorelabel
-# mount -o remount,ro /
-# exit
-# exit
-
-
-or 
-
-# delete rhgb quiet
-# add rd.break to end of linux 16 line
-# ctrl + x
-# mount -o remount,rw /sysroot
-# chroot /sysroot
-# passwd
-# load_policy -i 
-# chcon -t shadow_t /etc/shadow
 # mount -o remount,ro /
 # exit
 # exit
