@@ -168,7 +168,6 @@ $ls #you will see the files in blah which is localhost:/data
 
 Setup a cron job
 ----------------------------------------------------
-Setup a cron job
 
 The user mark must create a cron job that runs daily @ 15:25 local time and executes: echo hello
 $Crontab –e –u mark
@@ -183,3 +182,24 @@ $Crontab –e –u mark
 $crontab -l
 $crontab -u mark -l
 
+Configure Swap Space
+----------------------------------------------------
+
+#check if swap exists
+$free -m
+#identify space usage and availability
+$df -h
+#add swap
+$fallocate -l 2GB /swapfile
+$ls -lh /swapfile
+$chmod 600 /swapfile
+$mkswap /swapfile
+$swapon /swapfile
+$swapon -s
+
+#make swap perm
+$vim /etc/fstab
+#edit file
+|/swapfile       swap    swap    sw      0       0
+|
+|
