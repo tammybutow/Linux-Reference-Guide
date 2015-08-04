@@ -203,3 +203,10 @@ $vim /etc/fstab
 |/swapfile       swap    swap    sw      0       0
 |
 |
+
+
+Find files owned by mark and copy to a directory /opt/mark
+----------------------------------------------------
+$cd /opt/
+$mkdir mark
+find /home/mark -user mark -exec cp -f {} /opt/mark/ \; 
