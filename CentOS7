@@ -138,5 +138,31 @@ $id #this will show the user's id if they exist
 #restarting LDAP
 $systemctl restart nslcd
 
+Automount a filesystem
+----------------------------------------------------
+$yum install nfs-utils
+$vim /etc/exports
+#edit the file 
+|/data    -rw      *(rw,no_root_sqaush)
+|
+|
+$systemctl start nfs
+$systemctl status -l nfs #tells me what errors may have occured if any
+$showmount -e localhost
+$systemctl restart autofs
+$vim /etc/auto.master
+#edit the file
+|/nfsserver    /etc/auto.nfsserver
+|
+|
+$vim /etc/auto.nfsserver
+#edit the file
+|blah   -rw      localhost:/data
+|
+|
+$cd /nfsserver
+$ls -a #you will see nothing
+$cd blah #you will see the mounted filesystem
+$ls #you will see the files in blah which is localhost:/data
 
   
