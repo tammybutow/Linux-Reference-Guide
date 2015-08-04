@@ -109,4 +109,31 @@ $yum remove kernel-ml-4.1.3-1.el7.elrepo.x86_64
 
 LDAP with authconfig-gtk
 ----------------------------------------------------
+$yum install nss-pam-ldapd
+#install x window
+$yum search window
+$yum install xorg-x11-server-Xvfb.x86_64
+#start a graphical environment
+$startx
+$authconfig-gtk
+#LDAP Base DN: dc=tammybutow,dc=com
+#LDAP Server: ldap://server.tammybutow.com
+#Download cert: ftp://blah.pem
+#click apply
 
+or 
+
+$authconfig-tui
+#select use LDAP
+#select use LDAP Authentication
+#click next
+#select use TLS
+#Base DN: dc=tammybutow,dc=com
+#put .pem cert file in /etc/openldap/cacerts
+
+#checkldapusers
+$su - ldapuser1
+$id #this will show the user's id if they exist
+
+
+  
