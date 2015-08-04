@@ -210,3 +210,17 @@ Find files owned by mark and copy to a directory /opt/mark
 $cd /opt/
 $mkdir mark
 find /home/mark -user mark -exec cp -f {} /opt/mark/ \; 
+
+Find strings that match a string in a file
+----------------------------------------------------
+$grep ‘abc’ /etc/myfile > /tmp/myfile
+
+Find files that match a string and copy them to a destination
+----------------------------------------------------
+$grep 'lib' /etc/* | xargs cp -t /tmp/lib
+
+
+
+
+
+
