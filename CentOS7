@@ -135,5 +135,8 @@ $authconfig-tui
 $su - ldapuser1
 $id #this will show the user's id if they exist
 
+#restarting LDAP
+$systemctl restart nslcd
+
 
   
