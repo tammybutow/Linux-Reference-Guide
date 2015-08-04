@@ -165,4 +165,21 @@ $ls -a #you will see nothing
 $cd blah #you will see the mounted filesystem
 $ls #you will see the files in blah which is localhost:/data
 
-  
+
+Setup a cron job
+----------------------------------------------------
+Setup a cron job
+
+The user mark must create a cron job that runs daily @ 15:25 local time and executes: echo hello
+$Crontab –e –u mark
+#edit the file
+|SHELL=/bin/bash
+|HOME=/
+|MAILTO=”example@digitalocean.com”
+|#This is a comment
+|25 15 * * * echo ‘hello’
+
+#view what cron jobs are running
+$crontab -l
+$crontab -u mark -l
+
