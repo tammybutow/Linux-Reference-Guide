@@ -220,7 +220,89 @@ Find files that match a string and copy them to a destination
 $grep 'lib' /etc/* | xargs cp -t /tmp/lib
 
 
+ACLs
+----------------------------------------------------
+#Copy the file /etc/fstab to /var/tmp
+$cp /etc/fstab /var/tmp/
+#check permissions
+$getfacl /var/tmp/fstab
+#set gallia to have rw access
+$setfacl –m u:gallia:rw- /var/tmp/fstab
+#set mark to have no acess
+$setfacl –m u:mark:--- /var/tmp/fstab
+#All other users have the ability to read file /var/tmp/fstab
+$setfacl /etc/fstab –m o::r-- /var/tmp/fstab
+#verify settings
+$getfacl /var/tmp/fstab
+
+LVM
+----------------------------------------------------
+#check what's up
+$df -h
+$fdisk /dev/vda1
+#now using the tool
+$p #partition
+$n #new
+$l #logical
+$ #enter
+$ +1GB
+$ t 
+$ 7 #partition number
+$ l # lists types
+$8e #Linux LVM
+$p 
+$w #write
+$partprobe /dev/vda1
+$cat /proc/partitions #view it now available
+
+
+Resize LVM
+----------------------------------------------------
+#Check current size 
+$lvdisplay 
+$df -h
+$lvs
+$vgs
+
+To make a volume bigger we need to create another physical volume
+$p
+$n 
+$e #extended helps if you need to add more later, consumes remaining space
+$ #enter
+$ #enter
+$n
+$p
+$t
+$5
+$8e
+$w
+$partprobe   
+
+
+Create user with specific ID already set then add password
+----------------------------------------------------
+$useradd -u 1234 erin
+$passwd erin
+#enter a password for erin
 
 
 
+Configure Time Services
+----------------------------------------------------
+$yum install -y ntp
+$yum install -y chrony
+$systemctl enable chronyd
+$systemctl start chronyd
+#config is in /etc/chrony.conf
+#systemctl stop ntpd
 
+then
+#ntpdate pool.ntp.org
+
+or 
+#comment out the servers not needed
+#add server.tammybutow.com iburst
+$timedatectl status
+
+then
+$systemctl start ntpd
