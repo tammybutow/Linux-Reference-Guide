@@ -237,6 +237,8 @@ $getfacl /var/tmp/fstab
 
 LVM
 ----------------------------------------------------
+$lvmdiskscan
+
 #check what's up
 $df -h
 $fdisk /dev/vda1
